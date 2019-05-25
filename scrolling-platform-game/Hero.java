@@ -49,7 +49,7 @@ public class Hero extends Actor
     private GreenfootImage walkingRightImages[];
     private GreenfootImage walkingLeftImages[];
     private static final int WALK_ANIMATION_DELAY = 8;
-    private static final int COUNT_OF_WALKING_IMAGES = 2;
+    private static final int COUNT_OF_WALKING_IMAGES = 3;
     private int walkingFrames;
 
     /**
@@ -72,7 +72,7 @@ public class Hero extends Actor
         horizontalDirection = FACING_RIGHT;
 
         // Set image
-        setImage("hero-jump-down-right.png");
+        setImage("kirby-idle.png");
 
         // Initialize the 'walking' arrays
         walkingRightImages = new GreenfootImage[COUNT_OF_WALKING_IMAGES];
@@ -81,7 +81,7 @@ public class Hero extends Actor
         // Load walking images from disk
         for (int i = 0; i < walkingRightImages.length; i++)
         {
-            walkingRightImages[i] = new GreenfootImage("hero-walk-right-" + i + ".png");
+            walkingRightImages[i] = new GreenfootImage("kirby-walk-right-" + i + ".png");
 
             // Create left-facing images by mirroring horizontally
             walkingLeftImages[i] = new GreenfootImage(walkingRightImages[i]);
@@ -150,11 +150,12 @@ public class Hero extends Actor
             // Set image
             if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false)
             {
-                setImage("hero-right.png");
+                setImage("kirby-right.png");
             }
             else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false)
             {
-                setImage("hero-left.png");
+                
+                setImage("kirby-left.png");
             }
 
             // Get a reference to any object that's created from a subclass of Platform,
@@ -218,11 +219,11 @@ public class Hero extends Actor
         // Set image
         if (horizontalDirection == FACING_RIGHT)
         {
-            setImage("hero-jump-up-right.png");
+            setImage("kirby-jump-up-right.png");
         }
         else
         {
-            setImage("hero-jump-up-left.png");
+            setImage("kirby-jump-up-left.png");
         }
 
         // Change the vertical speed to the power of the jump
@@ -245,11 +246,11 @@ public class Hero extends Actor
             // Set image
             if (horizontalDirection == FACING_RIGHT)
             {
-                setImage("hero-jump-down-right.png");
+                setImage("kirby-jump-down-right.png");
             }
             else
             {
-                setImage("hero-jump-down-left.png");
+                setImage("kirby-jump-down-left.png");
             }
         }
 
@@ -310,11 +311,11 @@ public class Hero extends Actor
             // Set appropriate jumping image
             if (verticalDirection == JUMPING_UP)
             {
-                setImage("hero-jump-up-right.png");
+                setImage("kirby-jump-up-right.png");
             }
             else
             {
-                setImage("hero-jump-down-right.png");
+                setImage("kirby-jump-down-right.png");
             }
         }
 
@@ -428,11 +429,11 @@ public class Hero extends Actor
             // Set appropriate jumping image
             if (verticalDirection == JUMPING_UP)
             {
-                setImage("hero-jump-up-left.png");
+                setImage("kirby-jump-up-left.png");
             }
             else
             {
-                setImage("hero-jump-down-left.png");
+                setImage("kirby-jump-down-left.png");
             }
         }
 
