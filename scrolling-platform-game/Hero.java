@@ -14,17 +14,20 @@ public class Hero extends Actor
      * 
      * These are available for use in any method below.
      */    
+    // How much damage the hero can take
+    private int lives = 3;
+    
     // Horizontal speed (change in horizontal position, or delta X)
-    private int deltaX = 4;
+    private int deltaX = 6;
 
     // Vertical speed (change in vertical position, or delta Y)
     private int deltaY = 4;
 
     // Acceleration for falls
-    private int acceleration = 2;
+    private int acceleration = 1;
 
     // Strength of a jump
-    private int jumpStrength = -24;
+    private int jumpStrength = -18;
 
     // Track current theoretical position in wider "scrollable" world
     private int currentScrollableWorldXPosition;
@@ -364,6 +367,12 @@ public class Hero extends Actor
             // Track position in wider scrolling world
             currentScrollableWorldXPosition += deltaX;
 
+            List<Enemy> enemies = world.getObjects(Enemy.class);
+
+            for (Enemy enemy : enemies)
+            {
+                enemy.moveLeft(deltaX);
+            }
             // Get a list of all platforms (objects that need to move
             // to make hero look like they are moving)
             List<Platform> platforms = world.getObjects(Platform.class);
@@ -467,6 +476,14 @@ public class Hero extends Actor
 
             // Track position in wider scrolling world
             currentScrollableWorldXPosition -= deltaX;
+
+            List<Enemy> enemies = world.getObjects(Enemy.class);
+
+            for (Enemy enemy : enemies)
+            {
+                // Platforms move right to make hero appear to move left
+                enemy.moveRight(deltaX);
+            }
 
             // Get a list of all platforms (objects that need to move
             // to make hero look like they are moving)

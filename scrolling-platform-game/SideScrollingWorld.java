@@ -23,11 +23,11 @@ public class SideScrollingWorld extends World
     //              Should be a resolution that's a multiple of TILE_SIZE
     private static final int VISIBLE_WIDTH = 640;
     private static final int VISIBLE_HEIGHT = 480;
-    
+
     // Additional useful constants based on world size
     public static final int HALF_VISIBLE_WIDTH = VISIBLE_WIDTH / 2;
     private static final int HALF_VISIBLE_HEIGHT = VISIBLE_HEIGHT / 2;
-    
+
     // Defining the boundaries of the scrollable world
     // TO STUDENTS: Modify SCROLLABLE_WIDTH if you wish to have a longer level
     public static final int SCROLLABLE_WIDTH = VISIBLE_WIDTH * 3;
@@ -38,6 +38,9 @@ public class SideScrollingWorld extends World
 
     // Track whether game is on
     private boolean isGameOver;
+    
+    // Track frames
+    public int frames = 0;
 
     /**
      * Constructor for objects of class SideScrollingWorld.
@@ -62,36 +65,23 @@ public class SideScrollingWorld extends World
     private void setup()
     {
         // TO STUDENTS: Add, revise, or remove methods as needed to define your own game's world
-        addLeftGround();
+        // addLeftGround();
         addFences();
-        addMetalPlateSteps();
+        // addMetalPlateSteps();
         addClouds();
-        addRightGround();
+        // addRightGround();
+
+        // Add metal plates
+        addMetalPlates();
+
+        // Add ground tiles
+        addGround();
+        
+        // Add enemies
+        addEnemy();
+        
+        // Add the hero
         addHero();
-    }
-
-    /**
-     * Add blocks to create the ground to walk on at bottom-left of scrollable world.
-     */
-    private void addLeftGround()
-    {
-        // How many tiles will cover the bottom of the initial visible area of screen?
-        final int tilesToCreate = getWidth() / TILE_SIZE;
-
-        // Loop to create and add the tile objects
-        for (int i = 0; i < tilesToCreate; i += 1)
-        {
-            // Add ground objects at bottom of screen
-            // NOTE: Actors are added based on their centrepoint, so the math is a bit trickier.
-            int x = i * TILE_SIZE + HALF_TILE_SIZE;
-            int y = getHeight() - HALF_TILE_SIZE;
-
-            // Create a ground tile
-            Ground groundTile = new Ground(x, y);
-
-            // Add the objects
-            addObject(groundTile, x, y);
-        }
     }
 
     /**
@@ -172,6 +162,98 @@ public class SideScrollingWorld extends World
      */
     public void act()
     {
+        frames += 1;
+    }
+    
+    /**
+     * Add the enemies
+     */
+    private void addEnemy()
+    {
+        int x = (10 * TILE_SIZE) + HALF_TILE_SIZE;
+        int y = (13 * TILE_SIZE) + HALF_TILE_SIZE;
+        Goomba goomba = new Goomba(x, y);
+        addObject(goomba, x, y);
+    }
+    
+    /**
+     * Add rows of metal plate platforms
+     */
+    private void addMetalPlates()
+    {
+        for (int i = 0; i <= 5; i += 1)
+        {
+            //       (x position)    + (rows of plates) (centers the tile)
+            int x = (10 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (10 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+
+        for (int i = 0; i <= 7; i += 1)
+        {
+            int x = (18 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = (6 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+
+        for (int i = 0; i <= 5; i += 1)
+        {
+            int x = (25 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = (9 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+        
+        for (int i = 0; i <= 5; i += 1)
+        {
+            int x = (47 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = (10 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+        
+    }
+
+    /**
+     * Add the ground
+     */
+    private void addGround()
+    {
+        for (int i = 0; i <= 20; i += 1)
+        {
+            int x = (0 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            // Add the ground at the bottom of the world
+            int y = VISIBLE_HEIGHT - HALF_TILE_SIZE;
+            Ground someGround = new Ground(x, y);
+            addObject(someGround, x, y);
+        }
+
+        for (int i = 0; i <= 4; i += 1)
+        {
+            int x = (31 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = VISIBLE_HEIGHT - HALF_TILE_SIZE;
+            Ground someGround = new Ground(x, y);
+            addObject(someGround, x, y);
+        }
+
+        for (int i = 0; i <= 5; i += 1)
+        {
+            int x = (40 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = VISIBLE_HEIGHT - HALF_TILE_SIZE;
+            Ground someGround = new Ground(x, y);
+            addObject(someGround, x, y);
+        }
+        
+        for (int i = 0; i <= 5; i += 1)
+        {
+            int x = (55 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            int y = (8 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
     }
 
     /**
@@ -186,9 +268,33 @@ public class SideScrollingWorld extends World
         theHero = new Hero(initialX);
 
         // Add hero in bottom left corner of screen
-        addObject(theHero, initialX, getHeight() / 4 * 3);
+        addObject(theHero, initialX, 13 * TILE_SIZE + HALF_TILE_SIZE);
     }
 
+        /**
+     * Add blocks to create the ground to walk on at bottom-left of scrollable world.
+     */
+    private void addLeftGround()
+    {
+        // How many tiles will cover the bottom of the initial visible area of screen?
+        final int tilesToCreate = getWidth() / TILE_SIZE;
+
+        // Loop to create and add the tile objects
+        for (int i = 0; i < tilesToCreate; i += 1)
+        {
+            // Add ground objects at bottom of screen
+            // NOTE: Actors are added based on their centrepoint, so the math is a bit trickier.
+            int x = i * TILE_SIZE + HALF_TILE_SIZE;
+            int y = getHeight() - HALF_TILE_SIZE;
+
+            // Create a ground tile
+            Ground groundTile = new Ground(x, y);
+
+            // Add the objects
+            addObject(groundTile, x, y);
+        }
+    }
+    
     /**
      * Add blocks to create the ground to walk on at top-right of scrollable world.
      */
