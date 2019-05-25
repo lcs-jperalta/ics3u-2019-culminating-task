@@ -13,15 +13,22 @@ public class Hero extends Actor
      * Instance variables
      * 
      * These are available for use in any method below.
-     */    
-    // How much damage the hero can take
+     */
+    
+    // How much damage kirby can take
     private int lives = 3;
+    
+    // How many jumps kirby can use
+    private int numberOfJumps = 5;
+    
+    // Tracks 
+    private boolean isDown;
     
     // Horizontal speed (change in horizontal position, or delta X)
     private int deltaX = 6;
 
     // Vertical speed (change in vertical position, or delta Y)
-    private int deltaY = 4;
+    private int deltaY = 2;
 
     // Acceleration for falls
     private int acceleration = 1;
@@ -127,13 +134,21 @@ public class Hero extends Actor
         }
 
         // Jumping
-        if (Greenfoot.isKeyDown("space") && !isGameOver)
+        if (Greenfoot.isKeyDown("space") && !isGameOver && !isDown)
         {
-            // Only able to jump when on a solid object
-            if (onPlatform())
+            // Set the key as down (so it won't jump each frame)
+            isDown = true;
+            
+            // Only able to jump when kirby has jumped less than 5 times
+            if (numberOfJumps > 0)
             {
                 jump();
+                numberOfJumps -= 1;
             }
+        }
+        if (!Greenfoot.isKeyDown("space") && isDown)
+        {
+            isDown = false;
         }
     }
 
@@ -146,7 +161,10 @@ public class Hero extends Actor
         {
             // Stop falling
             deltaY = 0;
-
+            
+            // Reset the number of jumps kirby has
+            numberOfJumps = 5;
+            
             // Set image
             if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false)
             {
