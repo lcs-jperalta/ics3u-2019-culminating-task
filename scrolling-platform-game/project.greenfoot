@@ -10,6 +10,7 @@ class.GroundMiddle.image=Tileset_39.png
 class.GroundRight.image=Tileset_40.png
 class.GroundTopLeft.image=Tileset_17.png
 class.GroundTopMiddle.image=Tileset_18.png
+class.GroundTopRight.image=Tileset_19.png
 class.Hero.image=kirby-idle.png
 class.MetalPlate.image=metal-plate.png
 class.SideScrollingWorld.image=background.png
