@@ -27,6 +27,11 @@ public class Waddle_Dee extends Enemy
     private static final int COUNT_OF_WALKING_IMAGES = 2;
     private int walkingFrames;
 
+    // Facing which direction
+    private static final String FACING_LEFT = "left";
+    private static final String FACING_RIGHT = "right";
+    private String horizontalDirection;
+
     /**
      * Constructor
      * 
@@ -39,6 +44,9 @@ public class Waddle_Dee extends Enemy
         // Initialize the 'walking' arrays
         walkingRightImages = new GreenfootImage[COUNT_OF_WALKING_IMAGES];
         walkingLeftImages = new GreenfootImage[COUNT_OF_WALKING_IMAGES];
+
+        // Facing left to start
+        horizontalDirection = FACING_LEFT;
 
         // Load walking images from disk
         for (int i = 0; i < walkingRightImages.length; i++)
@@ -54,6 +62,27 @@ public class Waddle_Dee extends Enemy
      */
     public void act() 
     {
+        if (horizontalDirection == FACING_LEFT)
+        {
+            animateWalk(FACING_LEFT);
+        }
+        else
+        {
+            animateWalk(FACING_RIGHT);
+        }
+        
+        if (touchingWall())
+        {
+            if (horizontalDirection == FACING_RIGHT)
+            {
+                horizontalDirection = FACING_LEFT;
+            }
+            else
+            {
+                horizontalDirection = FACING_RIGHT;
+            }
+        }
+
         if (onPlatform())
         {
             // Stop falling
@@ -86,9 +115,20 @@ public class Waddle_Dee extends Enemy
                 fall();
             }
         }
-        // Move to the left
-        int newXPosition = getX() - deltaX;
-        setLocation(newXPosition, getY());
+
+        if (horizontalDirection == FACING_LEFT)
+        {
+            // Move to the left
+            int newXPosition = getX() - deltaX;
+            setLocation(newXPosition, getY());
+        }
+
+        if (horizontalDirection == FACING_RIGHT)
+        {
+            // Move to the left
+            int newXPosition = getX() + deltaX;
+            setLocation(newXPosition, getY());
+        }
     }
 
     /**
@@ -111,6 +151,46 @@ public class Waddle_Dee extends Enemy
             return true;
         }
 
+    }
+
+    /**
+     * Is the waddle dee touching a wall?
+     */
+    public boolean touchingWall()
+    {
+        // When the waddle dee touches a wall, it changes direction
+        
+    }
+
+    /**
+     * Animate walking
+     */
+    private void animateWalk(String direction)
+    {
+        // Track walking animation frames
+        walkingFrames += 1;
+
+        // Get current animation stage
+        int stage = walkingFrames / WALK_ANIMATION_DELAY;
+
+        // Animate
+        if (stage < walkingRightImages.length)
+        {
+            // Set image for this stage of the animation
+            if (direction == FACING_RIGHT)
+            {
+                setImage(walkingRightImages[stage]);
+            }
+            else
+            {
+                setImage(walkingLeftImages[stage]);
+            }
+        }
+        else
+        {
+            // Start animation loop from beginning
+            walkingFrames = 0;
+        }
     }
 
     /**
