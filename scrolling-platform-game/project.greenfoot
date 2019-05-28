@@ -1,5 +1,5 @@
 #Greenfoot project file
-class.Bird.image=bird-walk-right-1.png
+class.Bird.image=bird-walk-left-1.png
 class.Cloud.image=cloud.png
 class.Fence.image=fence.png
 class.Goomba.image=SMBenemies_01.png
@@ -14,7 +14,7 @@ class.GroundTopRight.image=Tileset_19.png
 class.Hero.image=kirby-idle.png
 class.MetalPlate.image=metal-plate.png
 class.SideScrollingWorld.image=background.png
-class.Waddle_Dee.image=waddle-dee-walk-right-1.png
+class.Waddle_Dee.image=waddle-dee-walk-left-1.png
 dependency1.from=SideScrollingWorld
 dependency1.to=Hero
 dependency1.type=UsesDependency
@@ -52,8 +52,8 @@ dependency9.from=Hero
 dependency9.to=Enemy
 dependency9.type=UsesDependency
 editor.fx.0.height=745
-editor.fx.0.width=1024
-editor.fx.0.x=416
+editor.fx.0.width=1290
+editor.fx.0.x=150
 editor.fx.0.y=23
 height=812
 package.numDependencies=12

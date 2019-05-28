@@ -13,13 +13,19 @@ public class Waddle_Dee extends Enemy
      */
     // Horizontal speed
     private int deltaX = 1;
-    
+
     // Vertical speed
     private int deltaY = 4;
 
     // Acceleration of falling
     private int acceleration = 1;
 
+    // For walking animation
+    private GreenfootImage walkingRightImages[];
+    private GreenfootImage walkingLeftImages[];
+    private static final int WALK_ANIMATION_DELAY = 8;
+    private static final int COUNT_OF_WALKING_IMAGES = 2;
+    private int walkingFrames;
     /**
      * Constructor
      * 
