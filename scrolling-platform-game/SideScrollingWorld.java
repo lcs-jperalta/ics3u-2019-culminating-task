@@ -163,6 +163,10 @@ public class SideScrollingWorld extends World
     public void act()
     {
         frames += 1;
+        if ( (frames % 60 == 0))
+        {
+            showText("Time: " + frames / 60, 580, 20);
+        }
     }
     
     /**

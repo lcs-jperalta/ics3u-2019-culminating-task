@@ -19,22 +19,22 @@ public class Hero extends Actor
     private int lives = 3;
     
     // How many jumps kirby can use
-    private int numberOfJumps = 5;
+    private int numberOfJumps = 3;
     
-    // Tracks 
+    // Tracks whether the key is down
     private boolean isDown;
     
     // Horizontal speed (change in horizontal position, or delta X)
-    private int deltaX = 6;
+    private int deltaX = 4;
 
     // Vertical speed (change in vertical position, or delta Y)
-    private int deltaY = 2;
+    private int deltaY = 1;
 
     // Acceleration for falls
     private int acceleration = 1;
 
     // Strength of a jump
-    private int jumpStrength = -18;
+    private int jumpStrength = -14;
 
     // Track current theoretical position in wider "scrollable" world
     private int currentScrollableWorldXPosition;
