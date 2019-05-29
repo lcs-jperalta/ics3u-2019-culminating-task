@@ -178,6 +178,9 @@ public class SideScrollingWorld extends World
         int y = (13 * TILE_SIZE) + HALF_TILE_SIZE;
         Goomba goomba = new Goomba(x, y);
         addObject(goomba, x, y);
+        
+        Waddle_Dee waddle_dee = new Waddle_Dee(x, y);
+        addObject(waddle_dee, x, y);
     }
     
     /**
@@ -185,6 +188,26 @@ public class SideScrollingWorld extends World
      */
     private void addMetalPlates()
     {
+        for (int i = 0; i <= 1; i += 1)
+        {
+            //       (x position)    + (rows of plates) (centers the tile)
+            int x = (5 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (13 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+        
+        for (int i = 0; i <= 1; i += 1)
+        {
+            //       (x position)    + (rows of plates) (centers the tile)
+            int x = (11 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (13 * TILE_SIZE) + HALF_TILE_SIZE;
+            MetalPlate plate = new MetalPlate(x, y);
+            addObject(plate, x, y);
+        }
+        
         for (int i = 0; i <= 5; i += 1)
         {
             //       (x position)    + (rows of plates) (centers the tile)

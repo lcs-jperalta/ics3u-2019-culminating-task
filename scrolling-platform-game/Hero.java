@@ -107,6 +107,7 @@ public class Hero extends Actor
     {
         checkKeys();
         checkFall();
+        checkForWalls();
         if (!isGameOver)
         {
             checkGameOver();
@@ -225,7 +226,27 @@ public class Hero extends Actor
             return true;
         }
     }
+    
+    /**
+     * Is the hero touching a wall?
+     */
+    public void checkForWalls()
+    {
+        // When the hero touches a wall, it is unable to go past the wall.
+        Actor touchingWallFromFront = getOneObjectAtOffset(0 - getImage().getWidth() / 2, 0, Platform.class);
+        Actor touchingWallFromBehind = getOneObjectAtOffset(0 + getImage().getWidth() / 2, 0, Platform.class);
 
+        if (touchingWallFromFront != null  && horizontalDirection == FACING_LEFT || touchingWallFromBehind != null && horizontalDirection == FACING_RIGHT)
+        {
+            deltaX = 0;
+        }
+        else
+        {
+            deltaX = 4;
+        }
+        
+    }
+    
     /**
      * Make the hero jump.
      */
@@ -310,7 +331,7 @@ public class Hero extends Actor
             walkingFrames = 0;
         }
     }
-
+    
     /**
      * Move the hero to the right.
      */

@@ -70,8 +70,8 @@ public class Waddle_Dee extends Enemy
         {
             animateWalk(FACING_RIGHT);
         }
-        
-        if (touchingWall())
+
+        if (touchingWall() == true)
         {
             if (horizontalDirection == FACING_RIGHT)
             {
@@ -110,10 +110,11 @@ public class Waddle_Dee extends Enemy
                 int correctedYPosition = rearUnder.getY() - rearUnder.getImage().getHeight() / 2 - this.getImage().getHeight() / 2;
                 setLocation(getX(), correctedYPosition);
             }
-            else
-            {
-                fall();
-            }
+
+        }
+        else
+        {
+            fall();
         }
 
         if (horizontalDirection == FACING_LEFT)
@@ -159,7 +160,18 @@ public class Waddle_Dee extends Enemy
     public boolean touchingWall()
     {
         // When the waddle dee touches a wall, it changes direction
-        
+        Actor touchingWallFromFront = getOneObjectAtOffset(0 - getImage().getWidth() / 2, 0, Platform.class);
+        Actor touchingWallFromBehind = getOneObjectAtOffset(0 + getImage().getWidth() / 2, 0, Platform.class);
+
+        if (touchingWallFromFront == null && touchingWallFromBehind == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+ 
     }
 
     /**
