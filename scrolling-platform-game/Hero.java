@@ -126,7 +126,7 @@ public class Hero extends Actor
         // Get object reference to world
         SideScrollingWorld world = (SideScrollingWorld) getWorld();
 
-        // world.showText("Lives: " + lives, world.getWidth() / 2, world.getHeight() / 2);
+        world.showText("Lives: " + lives, 500, 20);
         // world.showText("Invincibility frames: " + iframes, world.getWidth() / 4, world.getHeight() / 2);
     }
 
@@ -282,12 +282,11 @@ public class Hero extends Actor
             }
         }
 
-        
         // Reference to enemy
         Enemy touchingEnemy = (Enemy) getOneIntersectingObject(Enemy.class);
 
         // If the hero is touching the enemy and the hero is not invincible
-        if (touchingEnemy != null && iframes == 0)
+        if (touchingEnemy != null && iframes == 0 && !isGameOver)
         {
             // Lose a life when the enemy touches the hero.
             lives = lives - 1;
@@ -623,12 +622,11 @@ public class Hero extends Actor
         int offScreenVerticalPosition = (world.getHeight() + this.getImage().getHeight() / 2);
 
         // Off bottom of screen?
-        if (this.getY() > offScreenVerticalPosition)
+        if (this.getY() > offScreenVerticalPosition || lives == 0)
         {
             // Remove the hero
             isGameOver = true;
             world.setGameOver();
-            world.removeObject(this);
 
             // Tell the user game is over
             world.showText("GAME OVER", world.getWidth() / 2, world.getHeight() / 2);
