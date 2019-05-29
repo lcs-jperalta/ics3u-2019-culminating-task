@@ -38,7 +38,7 @@ public class SideScrollingWorld extends World
 
     // Track whether game is on
     private boolean isGameOver;
-    
+
     // Track frames
     public int frames = 0;
 
@@ -76,10 +76,10 @@ public class SideScrollingWorld extends World
 
         // Add ground tiles
         addGround();
-        
+
         // Add enemies
         addEnemy();
-        
+
         // Add the hero
         addHero();
     }
@@ -162,11 +162,17 @@ public class SideScrollingWorld extends World
      */
     public void act()
     {
+        // Track the number of frames for time.
         frames += 1;
+
+        // If statement is done every 60 frames (1 second)
         if ( (frames % 60 == 0))
         {
             showText("Time: " + frames / 60, 580, 20);
         }
+
+        
+
     }
     
     /**
@@ -178,11 +184,11 @@ public class SideScrollingWorld extends World
         int y = (13 * TILE_SIZE) + HALF_TILE_SIZE;
         Goomba goomba = new Goomba(x, y);
         addObject(goomba, x, y);
-        
+
         Waddle_Dee waddle_dee = new Waddle_Dee(x, y);
         addObject(waddle_dee, x, y);
     }
-    
+
     /**
      * Add rows of metal plate platforms
      */
@@ -197,7 +203,7 @@ public class SideScrollingWorld extends World
             MetalPlate plate = new MetalPlate(x, y);
             addObject(plate, x, y);
         }
-        
+
         for (int i = 0; i <= 1; i += 1)
         {
             //       (x position)    + (rows of plates) (centers the tile)
@@ -207,7 +213,7 @@ public class SideScrollingWorld extends World
             MetalPlate plate = new MetalPlate(x, y);
             addObject(plate, x, y);
         }
-        
+
         for (int i = 0; i <= 5; i += 1)
         {
             //       (x position)    + (rows of plates) (centers the tile)
@@ -233,7 +239,7 @@ public class SideScrollingWorld extends World
             MetalPlate plate = new MetalPlate(x, y);
             addObject(plate, x, y);
         }
-        
+
         for (int i = 0; i <= 5; i += 1)
         {
             int x = (47 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
@@ -241,7 +247,7 @@ public class SideScrollingWorld extends World
             MetalPlate plate = new MetalPlate(x, y);
             addObject(plate, x, y);
         }
-        
+
     }
 
     /**
@@ -273,7 +279,7 @@ public class SideScrollingWorld extends World
             Ground someGround = new Ground(x, y);
             addObject(someGround, x, y);
         }
-        
+
         for (int i = 0; i <= 5; i += 1)
         {
             int x = (55 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
@@ -298,7 +304,7 @@ public class SideScrollingWorld extends World
         addObject(theHero, initialX, 13 * TILE_SIZE + HALF_TILE_SIZE);
     }
 
-        /**
+    /**
      * Add blocks to create the ground to walk on at bottom-left of scrollable world.
      */
     private void addLeftGround()
@@ -321,7 +327,7 @@ public class SideScrollingWorld extends World
             addObject(groundTile, x, y);
         }
     }
-    
+
     /**
      * Add blocks to create the ground to walk on at top-right of scrollable world.
      */

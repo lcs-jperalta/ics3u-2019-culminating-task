@@ -14,16 +14,22 @@ public class Hero extends Actor
      * 
      * These are available for use in any method below.
      */
-    
+
     // How much damage kirby can take
-    private int lives = 3;
-    
+    public int lives = 3;
+
+    // Track whether kirby is hurt
+    private boolean isHurt;
+
+    // Track number of frames kirby is invincible
+    private int iframes = 0;
+
     // How many jumps kirby can use
     private int numberOfJumps = 3;
-    
+
     // Tracks whether the key is down
     private boolean isDown;
-    
+
     // Horizontal speed (change in horizontal position, or delta X)
     private int deltaX = 4;
 
@@ -72,6 +78,9 @@ public class Hero extends Actor
         // Game on
         isGameOver = false;
 
+        // Sets the hero so that it isn't hurt
+        isHurt = false;
+
         // First jump will be in 'down' direction
         verticalDirection = JUMPING_DOWN;
 
@@ -108,10 +117,17 @@ public class Hero extends Actor
         checkKeys();
         checkFall();
         checkForWalls();
+        checkForEnemies();
         if (!isGameOver)
         {
             checkGameOver();
         }
+
+        // Get object reference to world
+        SideScrollingWorld world = (SideScrollingWorld) getWorld();
+
+        // world.showText("Lives: " + lives, world.getWidth() / 2, world.getHeight() / 2);
+        // world.showText("Invincibility frames: " + iframes, world.getWidth() / 4, world.getHeight() / 2);
     }
 
     /**
@@ -139,7 +155,7 @@ public class Hero extends Actor
         {
             // Set the key as down (so it won't jump each frame)
             isDown = true;
-            
+
             // Only able to jump when kirby has jumped less than 5 times
             if (numberOfJumps > 0)
             {
@@ -147,6 +163,7 @@ public class Hero extends Actor
                 numberOfJumps -= 1;
             }
         }
+
         if (!Greenfoot.isKeyDown("space") && isDown)
         {
             isDown = false;
@@ -162,10 +179,10 @@ public class Hero extends Actor
         {
             // Stop falling
             deltaY = 0;
-            
+
             // Reset the number of jumps kirby has
             numberOfJumps = 5;
-            
+
             // Set image
             if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false)
             {
@@ -173,7 +190,7 @@ public class Hero extends Actor
             }
             else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false)
             {
-                
+
                 setImage("kirby-left.png");
             }
 
@@ -226,7 +243,7 @@ public class Hero extends Actor
             return true;
         }
     }
-    
+
     /**
      * Is the hero touching a wall?
      */
@@ -244,9 +261,41 @@ public class Hero extends Actor
         {
             deltaX = 4;
         }
-        
+
     }
-    
+
+    /**
+     * Is the hero touching an enemy?
+     */
+    public void checkForEnemies()
+    {
+        if (isHurt == true)
+        {
+            if (iframes < 60)
+            {
+                iframes = iframes + 1;
+            }
+            if (iframes == 60)
+            {
+                iframes = 0;
+                isHurt = false;
+            }
+        }
+
+        
+        // Reference to enemy
+        Enemy touchingEnemy = (Enemy) getOneIntersectingObject(Enemy.class);
+
+        // If the hero is touching the enemy and the hero is not invincible
+        if (touchingEnemy != null && iframes == 0)
+        {
+            // Lose a life when the enemy touches the hero.
+            lives = lives - 1;
+            isHurt = true;
+        }
+
+    }
+
     /**
      * Make the hero jump.
      */
@@ -331,7 +380,7 @@ public class Hero extends Actor
             walkingFrames = 0;
         }
     }
-    
+
     /**
      * Move the hero to the right.
      */
