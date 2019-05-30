@@ -171,7 +171,10 @@ public class SideScrollingWorld extends World
             showText("Time: " + frames / 60, 580, 20);
         }
 
-        
+        if ((frames % 5401 == 0))
+        {
+            Greenfoot.playSound("kirby-bgm.mp3");
+        }
 
     }
     

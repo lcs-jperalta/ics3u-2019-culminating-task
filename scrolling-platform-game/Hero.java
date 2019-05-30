@@ -15,8 +15,12 @@ public class Hero extends Actor
      * These are available for use in any method below.
      */
 
+   
     // How much damage kirby can take
     public int lives = 3;
+    
+    // Score
+    public int score = 0;
 
     // Track whether kirby is hurt
     private boolean isHurt;
@@ -161,8 +165,10 @@ public class Hero extends Actor
         // Get object reference to world
         SideScrollingWorld world = (SideScrollingWorld) getWorld();
 
-        world.showText("Lives: " + lives, 500, 20);
-        // world.showText("Invincibility frames: " + iframes, world.getWidth() / 4, world.getHeight() / 2);
+        world.showText("Lives: " + lives, 480, 20);
+        world.showText("Score: " + score, 100, 20);
+        
+        
     }
 
     /**
@@ -196,7 +202,8 @@ public class Hero extends Actor
         {
             // Set the key as down (so it won't jump each frame)
             isDown = true;
-
+            
+            Greenfoot.playSound("kirby-jumping.wav");
             // Only able to jump when kirby has jumped less than 5 times
             if (numberOfJumps > 0)
             {
@@ -218,10 +225,22 @@ public class Hero extends Actor
 
             // Open kirby's mouth
             isMouthOpen = true;
+            
+            Greenfoot.playSound("kirby-attacking.wav");
 
             animateOpenMouth(horizontalDirection);
         }
-        else if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && isMouthOpen)
+        else if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && !isEnemySwallowed && isMouthOpen)
+        {
+            // Set the key as down
+            isSpaceKeyDown = true;
+
+            // Close kirby's mouth
+            isMouthOpen = false;
+            
+            isEnemySwallowed = false;
+        }
+        else if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && isEnemySwallowed && isMouthOpen)
         {
             // Set the key as down
             isSpaceKeyDown = true;
@@ -231,8 +250,8 @@ public class Hero extends Actor
             
             isEnemySwallowed = false;
             
-            animateWalk(horizontalDirection);
-            // Spawn in a star projectile
+            // Add to the score
+            score += 150;
         }
 
         // Space key isn't down anymore
@@ -560,7 +579,8 @@ public class Hero extends Actor
             {
                 isGameOver = true;
                 world.setGameOver();
-
+                Greenfoot.playSound("kirby-level-complete.wav");
+                
                 // Tell the user game is over
                 world.showText("LEVEL COMPLETE", world.getWidth() / 2, world.getHeight() / 2);
             }
@@ -750,7 +770,7 @@ public class Hero extends Actor
             // Remove the hero
             isGameOver = true;
             world.setGameOver();
-
+            Greenfoot.playSound("kirby-game-over.wav");
             // Tell the user game is over
             world.showText("GAME OVER", world.getWidth() / 2, world.getHeight() / 2);
         }
