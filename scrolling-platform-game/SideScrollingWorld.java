@@ -72,8 +72,7 @@ public class SideScrollingWorld extends World
         // addRightGround();
 
         // Add metal plates
-        addMetalPlates();
-
+        // addMetalPlates();
         // Add ground tiles
         addGround();
 
@@ -141,7 +140,7 @@ public class SideScrollingWorld extends World
             }
         }
     }
-
+    
     /**
      * Add a few clouds for the opening scene.
      */
@@ -171,7 +170,7 @@ public class SideScrollingWorld extends World
             showText("Time: " + frames / 60, 580, 20);
         }
 
-        if ((frames % 5401 == 0))
+        if ((frames % 9900 == 0) || frames == 1)
         {
             Greenfoot.playSound("kirby-bgm.mp3");
         }
@@ -190,6 +189,11 @@ public class SideScrollingWorld extends World
 
         Waddle_Dee waddle_dee = new Waddle_Dee(x, y);
         addObject(waddle_dee, x, y);
+        
+        int a = (15 * TILE_SIZE) + HALF_TILE_SIZE;
+        int b = (12 * TILE_SIZE) + HALF_TILE_SIZE;
+        Bird bird = new Bird(a, b);
+        addObject(bird, a, b);
     }
 
     /**

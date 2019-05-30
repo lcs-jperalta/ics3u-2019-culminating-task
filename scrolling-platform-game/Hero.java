@@ -203,12 +203,12 @@ public class Hero extends Actor
             // Set the key as down (so it won't jump each frame)
             isDown = true;
             
-            Greenfoot.playSound("kirby-jumping.wav");
             // Only able to jump when kirby has jumped less than 5 times
             if (numberOfJumps > 0)
             {
                 jump();
                 numberOfJumps -= 1;
+                Greenfoot.playSound("kirby-jumping.wav");
             }
         }
         // Up key isn't down anymore
