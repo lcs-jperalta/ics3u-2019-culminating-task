@@ -27,8 +27,17 @@ public class Hero extends Actor
     // How many jumps kirby can use
     private int numberOfJumps = 3;
 
-    // Tracks whether the key is down
+    // Track whether kirby's mouth is open
+    private boolean isMouthOpen;
+
+    // Track whether an enemy is swallowed
+    private boolean isEnemySwallowed;
+
+    // Tracks whether the up key is down
     private boolean isDown;
+
+    // Tracks whether the space key is down
+    private boolean isSpaceKeyDown;
 
     // Horizontal speed (change in horizontal position, or delta X)
     private int deltaX = 4;
@@ -61,9 +70,23 @@ public class Hero extends Actor
     // For walking animation
     private GreenfootImage walkingRightImages[];
     private GreenfootImage walkingLeftImages[];
+    private GreenfootImage walkingRightMouthOpenImages[];
+    private GreenfootImage walkingLeftMouthOpenImages[];
     private static final int WALK_ANIMATION_DELAY = 8;
     private static final int COUNT_OF_WALKING_IMAGES = 3;
+    private static final int COUNT_OF_ALTERNATE_WALKING_IMAGES = 2;
     private int walkingFrames;
+    private int alternateWalkingFrames;
+
+    // For mouth opening/closing animation
+    private GreenfootImage openingMouthImages[];
+    private GreenfootImage closingMouthImages[];
+    private GreenfootImage openingMouthLeftImages[];
+    private GreenfootImage closingMouthLeftImages[];
+    private static final int COUNT_OF_MOUTH_OPENING_IMAGES = 2;
+    private static final int COUNT_OF_MOUTH_CLOSING_IMAGES = 2;
+    private int mouthOpeningFrames;
+    private int mouthClosingFrames;
 
     /**
      * Constructor
@@ -94,6 +117,9 @@ public class Hero extends Actor
         walkingRightImages = new GreenfootImage[COUNT_OF_WALKING_IMAGES];
         walkingLeftImages = new GreenfootImage[COUNT_OF_WALKING_IMAGES];
 
+        walkingRightMouthOpenImages = new GreenfootImage[COUNT_OF_ALTERNATE_WALKING_IMAGES];
+        walkingLeftMouthOpenImages = new GreenfootImage[COUNT_OF_ALTERNATE_WALKING_IMAGES];
+
         // Load walking images from disk
         for (int i = 0; i < walkingRightImages.length; i++)
         {
@@ -102,6 +128,15 @@ public class Hero extends Actor
             // Create left-facing images by mirroring horizontally
             walkingLeftImages[i] = new GreenfootImage(walkingRightImages[i]);
             walkingLeftImages[i].mirrorHorizontally();
+        }
+
+        for (int i = 0; i < walkingRightMouthOpenImages.length; i++)
+        {
+            walkingRightMouthOpenImages[i] = new GreenfootImage("kirby-mouth-closed-walk-right-" + i + ".png");
+
+            // Create left-facing images by mirroring horizontally
+            walkingLeftMouthOpenImages[i] = new GreenfootImage(walkingRightMouthOpenImages[i]);
+            walkingLeftMouthOpenImages[i].mirrorHorizontally();
         }
 
         // Track animation frames for walking
@@ -136,22 +171,28 @@ public class Hero extends Actor
     private void checkKeys()
     {
         // Walking keys
-        if (Greenfoot.isKeyDown("left") && !isGameOver)
+        if (Greenfoot.isKeyDown("left") && !isGameOver && !isMouthOpen)
         {
             moveLeft();
         }
-        else if (Greenfoot.isKeyDown("right") && !isGameOver)
+        else if (Greenfoot.isKeyDown("right") && !isGameOver && !isMouthOpen)
         {
             moveRight();
         }
-        else
+        else if (!isGameOver && !isEnemySwallowed)
         {
             // Standing still; reset walking animation
             walkingFrames = 0;
         }
+        else if (!isGameOver && isEnemySwallowed)
+        {
+            // Standing still; reset walking animation
+            alternateWalkingFrames = 0;
+
+        }
 
         // Jumping
-        if (Greenfoot.isKeyDown("space") && !isGameOver && !isDown)
+        if (Greenfoot.isKeyDown("up") && !isGameOver && !isDown && !isMouthOpen)
         {
             // Set the key as down (so it won't jump each frame)
             isDown = true;
@@ -163,11 +204,43 @@ public class Hero extends Actor
                 numberOfJumps -= 1;
             }
         }
-
-        if (!Greenfoot.isKeyDown("space") && isDown)
+        // Up key isn't down anymore
+        if (!Greenfoot.isKeyDown("up") && isDown)
         {
             isDown = false;
         }
+
+        // Attacking
+        if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && !isEnemySwallowed && !isMouthOpen)
+        {
+            // Set the key as down
+            isSpaceKeyDown = true;
+
+            // Open kirby's mouth
+            isMouthOpen = true;
+
+            animateOpenMouth(horizontalDirection);
+        }
+        else if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && isMouthOpen)
+        {
+            // Set the key as down
+            isSpaceKeyDown = true;
+
+            // Close kirby's mouth
+            isMouthOpen = false;
+            
+            isEnemySwallowed = false;
+            
+            animateWalk(horizontalDirection);
+            // Spawn in a star projectile
+        }
+
+        // Space key isn't down anymore
+        if (!Greenfoot.isKeyDown("space") && isSpaceKeyDown)
+        {
+            isSpaceKeyDown = false;
+        }
+
     }
 
     /**
@@ -184,16 +257,30 @@ public class Hero extends Actor
             numberOfJumps = 5;
 
             // Set image
-            if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false)
+            if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false && !isEnemySwallowed && !isMouthOpen)
             {
                 setImage("kirby-right.png");
             }
-            else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false)
+            else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false && !isEnemySwallowed && !isMouthOpen)
             {
-
                 setImage("kirby-left.png");
             }
-
+            else if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false && isEnemySwallowed && !isMouthOpen)
+            {
+                setImage("kirby-mouth-closed-right-idle.png");
+            }
+            else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false && isEnemySwallowed && !isMouthOpen)
+            {
+                setImage("kirby-mouth-closed-left-idle.png");
+            }
+            else if (horizontalDirection == FACING_RIGHT && Greenfoot.isKeyDown("right") == false && !isEnemySwallowed && isMouthOpen)
+            {
+                setImage("kirby-mouth-open-right.png");
+            }
+            else if (horizontalDirection == FACING_LEFT && Greenfoot.isKeyDown("left") == false && !isEnemySwallowed && isMouthOpen)
+            {
+                setImage("kirby-mouth-open-left.png");
+            }
             // Get a reference to any object that's created from a subclass of Platform,
             // that is below (or just below in front, or just below behind) the hero
             Actor directlyUnder = getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
@@ -286,11 +373,16 @@ public class Hero extends Actor
         Enemy touchingEnemy = (Enemy) getOneIntersectingObject(Enemy.class);
 
         // If the hero is touching the enemy and the hero is not invincible
-        if (touchingEnemy != null && iframes == 0 && !isGameOver)
+        if (touchingEnemy != null && iframes == 0 && !isGameOver && !isMouthOpen)
         {
             // Lose a life when the enemy touches the hero.
             lives = lives - 1;
             isHurt = true;
+        }
+        else if (touchingEnemy != null && !isGameOver && isMouthOpen)
+        {
+            isEnemySwallowed = true;
+            removeTouching(Enemy.class);
         }
 
     }
@@ -331,11 +423,11 @@ public class Hero extends Actor
             verticalDirection = JUMPING_DOWN;
 
             // Set image
-            if (horizontalDirection == FACING_RIGHT)
+            if (horizontalDirection == FACING_RIGHT && !isMouthOpen)
             {
                 setImage("kirby-jump-down-right.png");
             }
-            else
+            else if (horizontalDirection == FACING_LEFT && !isMouthOpen)
             {
                 setImage("kirby-jump-down-left.png");
             }
@@ -350,6 +442,21 @@ public class Hero extends Actor
     }
 
     /**
+     * Animate opening the mouth
+     */
+    private void animateOpenMouth(String direction)
+    {
+        if (direction == FACING_RIGHT)
+        {
+            setImage("kirby-mouth-open-right.png");
+        }
+        if (direction == FACING_LEFT)
+        {
+            setImage("kirby-mouth-open-left.png");
+        }
+    }
+
+    /**
      * Animate walking
      */
     private void animateWalk(String direction)
@@ -361,7 +468,7 @@ public class Hero extends Actor
         int stage = walkingFrames / WALK_ANIMATION_DELAY;
 
         // Animate
-        if (stage < walkingRightImages.length)
+        if (stage < walkingRightImages.length && !isEnemySwallowed)
         {
             // Set image for this stage of the animation
             if (direction == FACING_RIGHT)
@@ -371,6 +478,18 @@ public class Hero extends Actor
             else
             {
                 setImage(walkingLeftImages[stage]);
+            }
+        }
+        else if (stage < walkingRightMouthOpenImages.length && isEnemySwallowed)
+        {
+            // Set image for this stage of the animation
+            if (direction == FACING_RIGHT)
+            {
+                setImage(walkingRightMouthOpenImages[stage]);
+            }
+            else
+            {
+                setImage(walkingLeftMouthOpenImages[stage]);
             }
         }
         else
@@ -507,9 +626,13 @@ public class Hero extends Actor
         horizontalDirection = FACING_LEFT;
 
         // Set image 
-        if (onPlatform())
+        if (onPlatform() && !isMouthOpen)
         {
             animateWalk(horizontalDirection);
+        }
+        else if (isMouthOpen)
+        {
+
         }
         else
         {
