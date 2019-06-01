@@ -645,6 +645,7 @@ public class SideScrollingWorld extends World
             Greenfoot.playSound("kirby-bgm.mp3");
         }
 
+        
     }
 
     /**

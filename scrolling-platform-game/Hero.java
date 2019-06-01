@@ -395,6 +395,7 @@ public class Hero extends Actor
         if (touchingEnemy != null && iframes == 0 && !isGameOver && !isMouthOpen)
         {
             // Lose a life when the enemy touches the hero.
+            Greenfoot.playSound("kirby-hurt.wav");
             lives = lives - 1;
             isHurt = true;
         }
@@ -771,6 +772,7 @@ public class Hero extends Actor
             isGameOver = true;
             world.setGameOver();
             Greenfoot.playSound("kirby-game-over.wav");
+            Greenfoot.playSound("kirby-fall.wav");
             // Tell the user game is over
             world.showText("GAME OVER", world.getWidth() / 2, world.getHeight() / 2);
         }
