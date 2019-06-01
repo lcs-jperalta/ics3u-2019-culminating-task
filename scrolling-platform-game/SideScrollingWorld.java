@@ -84,9 +84,9 @@ public class SideScrollingWorld extends World
 
         // Add the platforms
         addPlatforms();
-        
+
         // Add the decoration
-        
+        addDecoration();
     }
 
     /**
@@ -374,60 +374,241 @@ public class SideScrollingWorld extends World
 
         GroundTopLeft ground1 = new GroundTopLeft((10 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground1, (10 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundTopMiddle ground2 = new GroundTopMiddle((11 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground2, (11 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundTopRight ground3 = new GroundTopRight((12 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground3, (12 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundBottomLeft ground4 = new GroundBottomLeft((18 * TILE_SIZE) + HALF_TILE_SIZE, (7 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground4, (18 * TILE_SIZE) + HALF_TILE_SIZE, (7 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundTopLeft ground5 = new GroundTopLeft((18 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground5, (18 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundTopMiddle ground6 = new GroundTopMiddle((19 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground6, (19 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         GroundTopRight ground7 = new GroundTopRight((20 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(ground7, (20 * TILE_SIZE) + HALF_TILE_SIZE, (4 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundRight ground8 = new GroundRight((20 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground8, (20 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopLeft ground9 = new GroundTopLeft((28 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground9, (28 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopRight ground10 = new GroundTopRight((29 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground10, (29 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundBottomLeft ground11 = new GroundBottomLeft((33 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground11, (33 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundBottomRight ground12 = new GroundBottomRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground12, (37 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundBottomRight ground13 = new GroundBottomRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (2 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground13, (37 * TILE_SIZE) + HALF_TILE_SIZE, (2 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopRight ground14 = new GroundTopRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground14, (37 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopLeft ground15 = new GroundTopLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground15, (43 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopLeft ground16 = new GroundTopLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground16, (43 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundBottomLeft ground17 = new GroundBottomLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground17, (43 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopRight ground18 = new GroundTopRight((45 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground18, (45 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopMiddle ground19 = new GroundTopMiddle((44 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground19, (44 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        GroundTopLeft ground20 = new GroundTopLeft((55 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground20, (55 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
+    }
+
+    /**
+     * Add the decoration.
+     */
+    private void addDecoration()
+    {
+        for (int i = 0; i < 14; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (0 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (0 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 2; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (0 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (14 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 5; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (11 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (9 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 3; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (10 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (14 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 4; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (24 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (7 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 2; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (19 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (5 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 6; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (24 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (14 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 8; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (28 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (6 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 3; i += 1)
+        {
+            for (int j = 0; j < 6; j += 1)
+            {
+                //       (x position)   + (centers the tile)
+                int x = (25 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+                int y = (8 * TILE_SIZE) + (j * TILE_SIZE) + HALF_TILE_SIZE;
+                GroundMiddle ground = new GroundMiddle(x, y);
+                addObject(ground, x, y);
+            }
+        }
+
+        for (int i = 0; i < 2; i += 1)
+        {
+            for (int j = 0; j < 9; j += 1)
+            {
+                //       (x position)   + (centers the tile)
+                int x = (34 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+                int y = (0 * TILE_SIZE) + (j * TILE_SIZE) + HALF_TILE_SIZE;
+                GroundMiddle ground = new GroundMiddle(x, y);
+                addObject(ground, x, y);
+            }
+        }
+
+        for (int i = 0; i < 3; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (36 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (0 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 4; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (36 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (5 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 5; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (44 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (4 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 3; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (44 * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (11 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 2; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (43 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (14 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundMiddle ground = new GroundMiddle(x, y);
+            addObject(ground, x, y);
+        }
+
+        for (int i = 0; i < 4; i += 1)
+        {
+            for (int j = 0; j < 6; j += 1)
+            {
+                //       (x position)   + (centers the tile)
+                int x = (56 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+                int y = (9 * TILE_SIZE) + (j * TILE_SIZE) + HALF_TILE_SIZE;
+                GroundMiddle ground = new GroundMiddle(x, y);
+                addObject(ground, x, y);
+            }
+        }
         
-        GroundTopLeft ground8 = new GroundTopLeft((28 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground8, (28 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopRight ground9 = new GroundTopRight((29 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground9, (29 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundBottomLeft ground10 = new GroundBottomLeft((33 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground10, (33 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundBottomRight ground11 = new GroundBottomRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground11, (37 * TILE_SIZE) + HALF_TILE_SIZE, (9 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundBottomRight ground12 = new GroundBottomRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (2 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground12, (37 * TILE_SIZE) + HALF_TILE_SIZE, (2 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopRight ground13 = new GroundTopRight((37 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground13, (37 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopLeft ground14 = new GroundTopLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground14, (43 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopLeft ground15 = new GroundTopLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground15, (43 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundBottomLeft ground16 = new GroundBottomLeft((43 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground16, (43 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopRight ground17 = new GroundTopRight((45 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground17, (45 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopMiddle ground18 = new GroundTopMiddle((44 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground18, (44 * TILE_SIZE) + HALF_TILE_SIZE, (3 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        GroundTopLeft ground19 = new GroundTopLeft((55 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(ground19, (55 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
+        GroundMiddle ground1 = new GroundMiddle((20 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(ground1, (20 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
     }
 
     /**
@@ -473,24 +654,24 @@ public class SideScrollingWorld extends World
     {
         Waddle_Dee waddle_dee1 = new Waddle_Dee((9 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(waddle_dee1, (9 * TILE_SIZE) + HALF_TILE_SIZE, (11 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         Waddle_Dee waddle_dee2 = new Waddle_Dee((21 * TILE_SIZE) + HALF_TILE_SIZE, (13 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(waddle_dee2, (21 * TILE_SIZE) + HALF_TILE_SIZE, (13 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         Waddle_Dee waddle_dee3 = new Waddle_Dee((27 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(waddle_dee3, (27 * TILE_SIZE) + HALF_TILE_SIZE, (5 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
         Waddle_Dee waddle_dee4 = new Waddle_Dee((40 * TILE_SIZE) + HALF_TILE_SIZE, (13 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(waddle_dee4, (40 * TILE_SIZE) + HALF_TILE_SIZE, (13 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        Bird bird1 = new Bird((23 * TILE_SIZE) + HALF_TILE_SIZE, (12 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(bird1, (23 * TILE_SIZE) + HALF_TILE_SIZE, (12 * TILE_SIZE) + HALF_TILE_SIZE);
-        
+
+        Bird bird1 = new Bird((22 * TILE_SIZE) + HALF_TILE_SIZE, (12 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(bird1, (22 * TILE_SIZE) + HALF_TILE_SIZE, (12 * TILE_SIZE) + HALF_TILE_SIZE);
+
         Bird bird2 = new Bird((38 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
         addObject(bird2, (38 * TILE_SIZE) + HALF_TILE_SIZE, (8 * TILE_SIZE) + HALF_TILE_SIZE);
-        
-        Bird bird3 = new Bird((42 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
-        addObject(bird3, (42 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
+
+        Bird bird3 = new Bird((41 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
+        addObject(bird3, (41 * TILE_SIZE) + HALF_TILE_SIZE, (6 * TILE_SIZE) + HALF_TILE_SIZE);
     }
 
     /**
