@@ -86,6 +86,16 @@ public class SideScrollingWorld extends World
      */
     private void addPlatforms()
     {
+        for (int i = 0; i < 60; i += 1)
+        {
+            //       (x position)   + (centers the tile)
+            int x = (0 * TILE_SIZE) + (i * TILE_SIZE) + HALF_TILE_SIZE;
+
+            int y = (-1 * TILE_SIZE) + HALF_TILE_SIZE;
+            GroundRight ground = new GroundRight(x, y);
+            addObject(ground, x, y);
+        }
+        
         for (int i = 0; i < 14; i += 1)
         {
             //       (x position)   + (centers the tile)
