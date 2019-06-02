@@ -15,10 +15,9 @@ public class Hero extends Actor
      * These are available for use in any method below.
      */
 
-   
     // How much damage kirby can take
     public int lives = 3;
-    
+
     // Score
     public int score = 0;
 
@@ -42,6 +41,9 @@ public class Hero extends Actor
 
     // Tracks whether the space key is down
     private boolean isSpaceKeyDown;
+
+    // Tracks whether kirby touched the ceiling
+    private boolean hasTouchedCeiling;
 
     // Horizontal speed (change in horizontal position, or delta X)
     private int deltaX = 4;
@@ -157,6 +159,7 @@ public class Hero extends Actor
         checkFall();
         checkForWalls();
         checkForEnemies();
+        checkForCeiling();
         if (!isGameOver)
         {
             checkGameOver();
@@ -167,8 +170,7 @@ public class Hero extends Actor
 
         world.showText("Lives: " + lives, 480, 20);
         world.showText("Score: " + score, 100, 20);
-        
-        
+
     }
 
     /**
@@ -202,7 +204,7 @@ public class Hero extends Actor
         {
             // Set the key as down (so it won't jump each frame)
             isDown = true;
-            
+
             // Only able to jump when kirby has jumped less than 5 times
             if (numberOfJumps > 0)
             {
@@ -225,7 +227,7 @@ public class Hero extends Actor
 
             // Open kirby's mouth
             isMouthOpen = true;
-            
+
             Greenfoot.playSound("kirby-attacking.wav");
 
             animateOpenMouth(horizontalDirection);
@@ -237,7 +239,7 @@ public class Hero extends Actor
 
             // Close kirby's mouth
             isMouthOpen = false;
-            
+
             isEnemySwallowed = false;
         }
         else if (Greenfoot.isKeyDown("space") && !isGameOver && !isSpaceKeyDown && isEnemySwallowed && isMouthOpen)
@@ -247,9 +249,9 @@ public class Hero extends Actor
 
             // Close kirby's mouth
             isMouthOpen = false;
-            
+
             isEnemySwallowed = false;
-            
+
             // Add to the score
             score += 150;
         }
@@ -368,6 +370,28 @@ public class Hero extends Actor
             deltaX = 4;
         }
 
+    }
+
+    /**
+     * Is the hero touching a ceiling?
+     */
+    public void checkForCeiling()
+    {
+        // Get an reference to a solid object (subclass of Platform) below the hero, if one exists
+        Actor directlyAbove = getOneObjectAtOffset(0, 0 - getImage().getWidth() / 2, Platform.class);
+
+        // If there is no solid object below (or slightly in front of or behind) the hero...
+        if (directlyAbove != null && !hasTouchedCeiling)
+        {
+            deltaY = 0;
+            hasTouchedCeiling = true;
+            int correctedYPosition = directlyAbove.getY() + directlyAbove.getImage().getHeight() / 2 + this.getImage().getHeight() / 2;
+            setLocation(getX(), correctedYPosition);
+        }
+        else
+        {
+            hasTouchedCeiling = false;
+        }
     }
 
     /**
@@ -581,7 +605,7 @@ public class Hero extends Actor
                 isGameOver = true;
                 world.setGameOver();
                 Greenfoot.playSound("kirby-level-complete.wav");
-                
+
                 // Tell the user game is over
                 world.showText("LEVEL COMPLETE", world.getWidth() / 2, world.getHeight() / 2);
             }
