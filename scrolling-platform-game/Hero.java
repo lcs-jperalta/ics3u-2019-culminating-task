@@ -482,7 +482,10 @@ public class Hero extends Actor
         setLocation(getX(), newVisibleWorldYPosition );
 
         // Accelerate (fall faster next time)
-        deltaY = deltaY + acceleration;
+        if (deltaY < 10)
+        {
+            deltaY = deltaY + acceleration;
+        }
     }
 
     /**
